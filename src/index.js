@@ -125,9 +125,13 @@ const main = () => {
   const container = document.getElementById("container");
 
   const createQRCodeFromInputValue = () => {
+    const text = createInput.value;
+    if (text === "") {
+      window.alert("テキストを入力してください");
+      return;
+    }
     removeChildren(container);
     updateDeletedBlockCounter(0);
-    const text = createInput.value;
     createQRCodeArray(text).then((qrCodeArray) => {
       const qrCodeElement = createQRCodeElement(qrCodeArray);
       container.appendChild(qrCodeElement);
