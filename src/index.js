@@ -75,8 +75,12 @@ const createQRCodeElement = (qrCodeArray) => {
       boxElem.setAttribute("data-initial-color", colorText);
       rowElem.appendChild(boxElem);
     });
+    rowElem.setAttribute("style", `width: ${row.length * 10}px`);
     rowsElem.appendChild(rowElem);
   });
+  const width = `${qrCodeArray[0].length * 10}px`;
+  const height = `${qrCodeArray.length * 10}px`;
+  rowsElem.setAttribute("style", `width: ${width}; height: ${height}`);
   return rowsElem;
 };
 
