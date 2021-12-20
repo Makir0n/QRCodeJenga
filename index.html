@@ -76,9 +76,24 @@
         height: 25px;
       }
 
-      .tweet {
-        text-align: right;
-        margin: 20px;
+      .tweet-container{
+        text-align: center;
+        margin: 20px 0;
+        color: #ffffff;
+        font-size: 12px;
+        line-height: 25px;
+      }
+      .tweet-button {
+        display: inline-block;
+        width: 80px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+        background-color: #1D9AF0;
+        color: #fff;
+        font-weight: 500;
+        font-size: 12px;
+        text-decoration: none;
       }
 
       .container {
@@ -198,20 +213,14 @@
           <input id="create-input" type="text" value="SUCCESS!" />
           <button id="create-button">QRコードを作成</button>
         </div>
-        <div class="tweet">
+        <div class="tweet-container">
+          ＼Twitterでシェア！／<br/>
           <a
-            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-            class="twitter-share-button"
-            data-text="QRコードジェンガ"
-            data-lang="ja"
-            data-show-count="false"
-            >Tweet</a
+            href="http://twitter.com/share?url=https%3A%2F%2Fmakir0n.github.io%2FQRCodeJenga%2F&text=QR%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%AC"
+            target="_blank"
+            class="tweet-button"
+            >ツイート</a
           >
-          <script
-            async
-            src="https://platform.twitter.com/widgets.js"
-            charset="utf-8"
-          ></script>
         </div>
         <div class="credit">
           <a href="terms.html">利用規約</a><br />
