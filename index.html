@@ -22,7 +22,7 @@
       .wrapper {
         display: flex;
         flex-direction: row;
-        height: 100vh;
+        min-height: 100vh;
       }
 
       @media screen and (max-width: 600px) {
@@ -37,9 +37,10 @@
         font-size: 28px;
         color: #e2db67;
         font-family: "RocknRoll One", sans-serif;
+        margin: 20px 0;
       }
 
-      .desc {
+      p.desc {
         text-align: center;
         color: #e2db67;
         font-family: "Zen Antique Soft", serif;
@@ -50,18 +51,19 @@
         font-size: 20px;
         color: #92248a;
         font-family: "RocknRoll One", sans-serif;
+        margin: 30px 0 20px 0;
       }
-
-      p {
+      p.usage {
         font-size: 16px;
         color: #feffff;
         font-family: "Zen Antique Soft", serif;
+        margin: 0 10px 20px 10px;
       }
 
       .create-container {
         width: 100%;
         text-align: center;
-        margin: 10px 0;
+        margin: 20px 0;
       }
       #create-input {
         height: 20px;
@@ -198,7 +200,7 @@
           みんなで順番にQRコードを1マスずつ白く塗りつぶして読み取れなくなった人の負け！
         </p>
         <h2>遊び方</h2>
-        <p>
+        <p class="usage">
           ① はじめにスマホのQRコードリーダー（例：Google
           レンズ）を準備します。QRコードリーダーでQRコードが読み取れることを確認しましょう。<br />
           ②
