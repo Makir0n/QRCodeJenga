@@ -1,205 +1,230 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-  <meta charset="utf-8" />
-  <title>QRコードジェンガ</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap" rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=RocknRoll+One&family=Zen+Antique+Soft&display=swap"
-    rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-    }
-
-    @media screen and (max-width: 600px) {
-      .wrapper {
-        flex-direction: column-reverse;
-        height: 100%;
+  <head>
+    <meta charset="utf-8" />
+    <title>QRコードジェンガ</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=RocknRoll+One&family=Zen+Antique+Soft&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
       }
-    }
 
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      color: #e2db67;
-      font-family: 'RocknRoll One', sans-serif;
-    }
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+      }
 
-    .desc {
-      text-align: center;
-      color: #e2db67;
-      font-family: 'Zen Antique Soft', serif;
-    }
+      @media screen and (max-width: 600px) {
+        .wrapper {
+          flex-direction: column-reverse;
+          height: 100%;
+        }
+      }
 
-    h2 {
-      text-align: center;
-      font-size: 20px;
-      color: #92248a;
-      font-family: 'RocknRoll One', sans-serif;
-    }
+      h1 {
+        text-align: center;
+        font-size: 28px;
+        color: #e2db67;
+        font-family: "RocknRoll One", sans-serif;
+      }
 
-    p {
-      font-size: 16px;
-      color: #feffff;
-      font-family: 'Zen Antique Soft', serif;
-    }
+      .desc {
+        text-align: center;
+        color: #e2db67;
+        font-family: "Zen Antique Soft", serif;
+      }
 
-    .create-container {
-      width: 100%;
-      text-align: center;
-      margin:10px 0;
-    }
-    #create-input {
-      height: 20px;
-      border: 1px solid transparent;
-      border-radius: 2px;
-    }
+      h2 {
+        text-align: center;
+        font-size: 20px;
+        color: #92248a;
+        font-family: "RocknRoll One", sans-serif;
+      }
 
-    #create-button {
-      background-color: #e2db67;
-      border: 1px solid transparent;
-      border-radius: 2px;
-      height: 25px;
-    }
+      p {
+        font-size: 16px;
+        color: #feffff;
+        font-family: "Zen Antique Soft", serif;
+      }
 
-    .tweet {
-      text-align: right;
-      margin: 20px;
-    }
+      .create-container {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+      }
+      #create-input {
+        height: 20px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+      }
 
-    .container {
-      width: 100%;
-      margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-content: space-around;
-    }
+      #create-button {
+        background-color: #e2db67;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        height: 25px;
+      }
 
-    .container.right {
-      background: linear-gradient(to top,
+      .tweet {
+        text-align: right;
+        margin: 20px;
+      }
+
+      .container {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: space-around;
+      }
+
+      .container.right {
+        background: linear-gradient(
+          to top,
           #5e492c 10%,
           #57392f 20%,
           #481b18 40%,
           #1e0606 80%,
-          #1a0806 100%);
-      background-size: cover;
-    }
+          #1a0806 100%
+        );
+        background-size: cover;
+      }
 
+      .rows {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+      }
 
-    .rows {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-    }
+      .row {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+      }
 
-    .row {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: row;
-    }
+      .box {
+        width: 15px;
+        height: 15px;
+        margin: 0;
+        padding: 0;
+        flex-shrink: 0;
+      }
 
-    .box {
-      width: 15px;
-      height: 15px;
-      margin: 0;
-      padding: 0;
-      flex-shrink: 0;
-    }
+      .box[data-color="black"] {
+        background-color: #000000;
+      }
 
-    .box[data-color="black"] {
-      background-color: #000000;
-    }
+      .box[data-color="white"] {
+        background-color: #ffffff;
+      }
 
-    .box[data-color="white"] {
-      background-color: #ffffff;
-    }
+      .deleted-block {
+        margin: 20px;
+        text-align: center;
+      }
 
-    .deleted-block {
-      margin: 20px;
-      text-align: center;
-    }
+      .credit {
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+        color: #999999;
+      }
+      .credit a,
+      .credit:visited,
+      .credit:hover {
+        color: #999999;
+      }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-TTJ533Z7X3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    .credit {
-      font-size: 12px;
-      line-height: 18px;
-      text-align: center;
-      color: #999999;
-    }
-    .credit a, .credit:visited, .credit:hover {
-      color: #999999;
-    }
-  </style>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTJ533Z7X3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag("config", "G-TTJ533Z7X3");
+    </script>
+  </head>
 
-    gtag('config', 'G-TTJ533Z7X3');
-  </script>
-</head>
-
-<body>
-  <div class="wrapper">
-    <div class="container">
-      <div id="container"></div>
-      <div class="deleted-block">
-        消した黒マス: <span id="deleted-block-count">0</span>個
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div id="container"></div>
+        <div class="deleted-block">
+          消した黒マス: <span id="deleted-block-count">0</span>個
+        </div>
+      </div>
+      <div class="container right">
+        <h1>QRコードジェンガ</h1>
+        <p class="desc">
+          1人〜7人程度までで遊べるパーティーゲーム。<br />
+          みんなで順番にQRコードを1マスずつ白く塗りつぶして読み取れなくなった人の負け！
+        </p>
+        <h2>遊び方</h2>
+        <p>
+          ① はじめにスマホのQRコードリーダー（例：Google
+          レンズ）を準備します。QRコードリーダーでQRコードが読み取れることを確認しましょう。<br />
+          ②
+          QRコードの黒いマスをタップ(クリック)すると白く塗りつぶすことができます。プレイヤーは1マスずつ白く塗りつぶします。<br />
+          ③
+          1マス塗りつぶすごとにQRコードリーダーで読み取れるかを確認します。読み取れれば次のプレイヤーに交代します。<br />
+          ④
+          これを1人ずつ繰り返し、QRコードが読み取れなくなるまで繰り返します。最初に読み取れなくした人の負けです。<br /><br />
+          (やり直したい人のために白マスをタップしても黒マスに反転します)
+        </p>
+        <div class="create-container">
+          <input id="create-input" type="text" value="SUCCESS!" />
+          <button id="create-button">QRコードを作成</button>
+        </div>
+        <div class="tweet">
+          <a
+            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+            class="twitter-share-button"
+            data-text="QRコードジェンガ"
+            data-lang="ja"
+            data-show-count="false"
+            >Tweet</a
+          >
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+        <div class="credit">
+          <a href="terms.html">利用規約</a><br />
+          ゲーム考案、企画、デザイン:
+          <a href="https://twitter.com/Makir0n" target="_blank">@Makir0n</a>
+          開発:
+          <a href="https://twitter.com/asakura_dev" target="_blank"
+            >@asakura_dev</a
+          ><br />
+          QRコードは(株)デンソーウェーブの登録商標です
+        </div>
       </div>
     </div>
-    <div class="container right">
-      <h1>QRコードジェンガ</h1>
-      <p class="desc">
-        1人〜7人程度までで遊べるパーティーゲーム。<br />
-        みんなで順番にQRコードを1マスずつ白く塗りつぶして読み取れなくなった人の負け！
-      </p>
-      <h2>遊び方</h2>
-      <p>
-        ① はじめにスマホのQRコードリーダー（例：Google
-        レンズ）を準備します。QRコードリーダーでQRコードが読み取れることを確認しましょう。<br />
-        ②
-        QRコードの黒いマスをタップ(クリック)すると白く塗りつぶすことができます。プレイヤーは1マスずつ白く塗りつぶします。<br />
-        ③
-        1マス塗りつぶすごとにQRコードリーダーで読み取れるかを確認します。読み取れれば次のプレイヤーに交代します。<br />
-        ④
-        これを1人ずつ繰り返し、QRコードが読み取れなくなるまで繰り返します。最初に読み取れなくした人の負けです。<br /><br />
-        (やり直したい人のために白マスをタップしても黒マスに反転します)
-      </p>
-      <div class="create-container">
-        <input id="create-input" type="text" value="SUCCESS!" />
-        <button id="create-button">QRコードを作成</button>
-      </div>
-      <div class="tweet">
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="QRコードジェンガ"
-          data-lang="ja" data-show-count="false">Tweet</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div>
-      <div class="credit">
-        ゲーム考案、企画、デザイン: <a href="https://twitter.com/Makir0n" target="_blank">@Makir0n</a> 開発: <a
-          href="https://twitter.com/asakura_dev" target="_blank">@asakura_dev</a><br />
-        QRコードは(株)デンソーウェーブの登録商標です
-      </div>
-    </div>
-  </div>
-  <script src="dist/main.js"></script>
-</body>
-
+    <script src="dist/main.js"></script>
+  </body>
 </html>
