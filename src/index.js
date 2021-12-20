@@ -7,12 +7,12 @@ const COLOR = {
 
 const BOX_SIZE = 15;
 
-var deletedBockCounter = 0;
+let deletedBockCount = 0;
 
 const updateDeletedBlockCounter = (num) => {
-  deletedBockCounter = num;
+  deletedBockCount = num;
   const counterElem = document.getElementById("deleted-block-count");
-  counterElem.innerText = deletedBockCounter;
+  counterElem.innerText = deletedBockCount;
 };
 
 /**
@@ -95,9 +95,9 @@ const reverseBoxColor = (elem) => {
   elem.setAttribute("data-color", nextColor);
   if (elem.getAttribute("data-initial-color") === COLOR.BLACK) {
     if (nextColor === COLOR.WHITE) {
-      updateDeletedBlockCounter(deletedBockCounter + 1);
+      updateDeletedBlockCounter(deletedBockCount + 1);
     } else {
-      updateDeletedBlockCounter(deletedBockCounter - 1);
+      updateDeletedBlockCounter(deletedBockCount - 1);
     }
   }
 };
