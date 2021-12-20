@@ -108,7 +108,7 @@ const main = () => {
   // qrCodeElementを追加する対象コンテナ
   const container = document.getElementById("container");
 
-  createButton.addEventListener("click", () => {
+  const createQRCodeFromInputValue = () => {
     removeChildren(container);
     const text = createInput.value;
     createQRCodeArray(text).then((qrCodeArray) => {
@@ -116,7 +116,11 @@ const main = () => {
       container.appendChild(qrCodeElement);
       setOnClickBoxes(qrCodeElement);
     });
-  });
+  };
+  createButton.addEventListener("click", createQRCodeFromInputValue);
+
+  // Create default qr code
+  createQRCodeFromInputValue();
 };
 
 main();
