@@ -80,7 +80,10 @@ const createQRCodeElement = (qrCodeArray) => {
   });
   const width = `${qrCodeArray[0].length * 10}px`;
   const height = `${qrCodeArray.length * 10}px`;
-  rowsElem.setAttribute("style", `width: ${width}; height: ${height}`);
+  rowsElem.setAttribute(
+    "style",
+    `width: ${width}; height: ${height}; padding: 10px`
+  );
   return rowsElem;
 };
 
