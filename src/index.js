@@ -18,7 +18,7 @@ const COLOR = {
 const createQRCodeArray = async (text) => {
   const canvas = document.createElement("canvas");
   // https://www.npmjs.com/package/qrcode#qr-code-options
-  await QRCode.toCanvas(canvas, text, { scale: 1 });
+  await QRCode.toCanvas(canvas, text, { scale: 1, margin: 0 });
   const ctx = canvas.getContext("2d");
   const rows = [];
   for (let y = 0; y < canvas.height; y++) {
