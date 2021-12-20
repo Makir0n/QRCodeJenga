@@ -5,6 +5,14 @@ const COLOR = {
   BLACK: "black",
 };
 
+var deletedBockCounter = 0;
+
+const updateDeletedBlockCounter = (num) => {
+  deletedBockCounter = num;
+  const counterElem = document.getElementById("deleted-block-count");
+  counterElem.innerText = deletedBockCounter;
+};
+
 /**
  * Return qr code as a two-dimensional array
  * const rows = [
@@ -64,6 +72,7 @@ const createQRCodeElement = (qrCodeArray) => {
     row.forEach((colorText) => {
       const boxElem = createDivElement("box");
       boxElem.setAttribute("data-color", colorText);
+      boxElem.setAttribute("data-initial-color", colorText);
       rowElem.appendChild(boxElem);
     });
     rowsElem.appendChild(rowElem);
@@ -75,6 +84,13 @@ const reverseBoxColor = (elem) => {
   const nextColor =
     elem.getAttribute("data-color") === COLOR.WHITE ? COLOR.BLACK : COLOR.WHITE;
   elem.setAttribute("data-color", nextColor);
+  if (elem.getAttribute("data-initial-color") === COLOR.BLACK) {
+    if (nextColor === COLOR.WHITE) {
+      updateDeletedBlockCounter(deletedBockCounter + 1);
+    } else {
+      updateDeletedBlockCounter(deletedBockCounter - 1);
+    }
+  }
 };
 
 /**
@@ -110,6 +126,7 @@ const main = () => {
 
   const createQRCodeFromInputValue = () => {
     removeChildren(container);
+    updateDeletedBlockCounter(0);
     const text = createInput.value;
     createQRCodeArray(text).then((qrCodeArray) => {
       const qrCodeElement = createQRCodeElement(qrCodeArray);
