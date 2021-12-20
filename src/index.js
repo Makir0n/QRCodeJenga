@@ -5,6 +5,8 @@ const COLOR = {
   BLACK: "black",
 };
 
+const BOX_SIZE = 15;
+
 var deletedBockCounter = 0;
 
 const updateDeletedBlockCounter = (num) => {
@@ -75,14 +77,14 @@ const createQRCodeElement = (qrCodeArray) => {
       boxElem.setAttribute("data-initial-color", colorText);
       rowElem.appendChild(boxElem);
     });
-    rowElem.setAttribute("style", `width: ${row.length * 10}px`);
+    rowElem.setAttribute("style", `width: ${row.length * BOX_SIZE}px`);
     rowsElem.appendChild(rowElem);
   });
-  const width = `${qrCodeArray[0].length * 10}px`;
-  const height = `${qrCodeArray.length * 10}px`;
+  const width = `${qrCodeArray[0].length * BOX_SIZE}px`;
+  const height = `${qrCodeArray.length * BOX_SIZE}px`;
   rowsElem.setAttribute(
     "style",
-    `width: ${width}; height: ${height}; padding: 10px`
+    `width: ${width}; height: ${height}; padding: ${BOX_SIZE}px`
   );
   return rowsElem;
 };
