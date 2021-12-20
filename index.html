@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>QRコードジェンガ | QRCodeJenga</title>
-<script src="QRCodeJenga.js"></script>
-<link rel="stylesheet" type="text/css" href="index.css">
-</head>
-<body>
-    <div id="wrapper">
-        <canvas id="canvas"></canvas>
-    </div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>QRコードジェンガ</title>
+    <style>
+        .rows {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .row {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+        }
+        .box {
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .box[data-color='black'] {
+            background-color: #000000;
+        }
+        .box[data-color='white'] {
+            background-color: #ffffff; 
+        }
+    </style>
+  </head>
+  <body>
+    <input id="create-input" type="text"/>
+    <button id="create-button">作成</button>
+    <div id="container"></div>
+    <script src="dist/main.js"></script>
+  </body>
 </html>
