@@ -6,6 +6,8 @@ const COLOR = {
 };
 
 const BOX_SIZE = 15;
+const ROW_LABEL_WIDTH = 20;
+const COLUMN_LABEL_HEIGHT = 20;
 
 let initialBlackBoxNum = 0;
 let deletedBlackBoxCount = 0;
@@ -68,6 +70,16 @@ const createDivElement = (className) => {
   return divElem;
 };
 
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const getColumnLabel = (number) => {
+  const secondDigitCharAt = number / 26 - 1;
+  const firstDigitCharAt = number % 26;
+  const secondDigitChar =
+    secondDigitCharAt >= 0 ? ALPHABET.charAt(secondDigitCharAt) : "";
+  const firstDigitChar = ALPHABET.charAt(firstDigitCharAt);
+  return `${secondDigitChar}${firstDigitChar}`;
+};
+
 /**
  * Generate qr code element from qrCodeArray
  * DOM Tree
@@ -84,22 +96,40 @@ const createDivElement = (className) => {
  */
 const createQRCodeElement = (qrCodeArray) => {
   const rowsElem = createDivElement("rows");
-  qrCodeArray.forEach((row) => {
+  // 1行目 列ラベルの追加
+  const columnLabelRowElem = createDivElement("row");
+  const cornerElem = createDivElement("corner");
+  columnLabelRowElem.appendChild(cornerElem);
+  for (let i = 0; i < qrCodeArray[0].length; i++) {
+    const columnLabelElem = createDivElement("column-label");
+    columnLabelElem.innerText = getColumnLabel(i);
+    columnLabelRowElem.appendChild(columnLabelElem);
+  }
+  rowsElem.appendChild(columnLabelRowElem);
+  // 行ラベル + QRコードの追加
+  qrCodeArray.forEach((row, index) => {
     const rowElem = createDivElement("row");
+    // 行ラベルの追加
+    const rowLabelElem = createDivElement("row-label");
+    rowLabelElem.innerText = `${index + 1}`;
+    rowElem.appendChild(rowLabelElem);
     row.forEach((colorText) => {
       const boxElem = createDivElement("box");
       boxElem.setAttribute("data-color", colorText);
       boxElem.setAttribute("data-initial-color", colorText);
       rowElem.appendChild(boxElem);
     });
-    rowElem.setAttribute("style", `width: ${row.length * BOX_SIZE}px`);
+    rowElem.setAttribute(
+      "style",
+      `width: ${row.length * BOX_SIZE + ROW_LABEL_WIDTH} px`
+    );
     rowsElem.appendChild(rowElem);
   });
-  const width = `${qrCodeArray[0].length * BOX_SIZE}px`;
-  const height = `${qrCodeArray.length * BOX_SIZE}px`;
+  const width = `${qrCodeArray[0].length * BOX_SIZE + ROW_LABEL_WIDTH}px`;
+  const height = `${qrCodeArray.length * BOX_SIZE + COLUMN_LABEL_HEIGHT}px`;
   rowsElem.setAttribute(
     "style",
-    `width: ${width}; height: ${height}; padding: ${BOX_SIZE}px`
+    `width: ${width}; height: ${height}; padding: 0px ${ROW_LABEL_WIDTH}px ${COLUMN_LABEL_HEIGHT}px 0px`
   );
   return rowsElem;
 };
