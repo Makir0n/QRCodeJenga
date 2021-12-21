@@ -7,12 +7,21 @@ const COLOR = {
 
 const BOX_SIZE = 15;
 
-let deletedBockCount = 0;
+let initialBlackBoxNum = 0;
+let deletedBlackBoxCount = 0;
 
-const updateDeletedBlockCounter = (num) => {
-  deletedBockCount = num;
+const updateStat = (newDeletedBlackBoxCount) => {
+  deletedBlackBoxCount = newDeletedBlackBoxCount;
   const counterElem = document.getElementById("deleted-block-count");
-  counterElem.innerText = deletedBockCount;
+  if (counterElem) {
+    counterElem.innerText = deletedBlackBoxCount;
+  }
+  const percentElem = document.getElementById("deleted-block-percent");
+  if (percentElem) {
+    percentElem.innerText = `破壊率: ${
+      Math.floor((deletedBlackBoxCount / initialBlackBoxNum) * 10000) / 100
+    }%`;
+  }
 };
 
 /**
@@ -31,15 +40,21 @@ const createQRCodeArray = async (text) => {
   await QRCode.toCanvas(canvas, text, { scale: 1, margin: 0 });
   const ctx = canvas.getContext("2d");
   const rows = [];
+  let boxNum = 0;
   for (let y = 0; y < canvas.height; y++) {
     const row = [];
     for (let x = 0; x < canvas.width; x++) {
       const pixel = ctx.getImageData(x, y, 1, 1);
-      const pixelValue = pixel.data[0] === 0 ? COLOR.BLACK : COLOR.WHITE;
+      const isBlack = pixel.data[0] === 0;
+      const pixelValue = isBlack ? COLOR.BLACK : COLOR.WHITE;
+      if (isBlack) {
+        boxNum += 1;
+      }
       row.push(pixelValue);
     }
     rows.push(row);
   }
+  initialBlackBoxNum = boxNum;
   return rows;
 };
 
@@ -95,9 +110,9 @@ const reverseBoxColor = (elem) => {
   elem.setAttribute("data-color", nextColor);
   if (elem.getAttribute("data-initial-color") === COLOR.BLACK) {
     if (nextColor === COLOR.WHITE) {
-      updateDeletedBlockCounter(deletedBockCount + 1);
+      updateStat(deletedBlackBoxCount + 1);
     } else {
-      updateDeletedBlockCounter(deletedBockCount - 1);
+      updateStat(deletedBlackBoxCount - 1);
     }
   }
 };
@@ -140,11 +155,11 @@ const main = () => {
       return;
     }
     removeChildren(container);
-    updateDeletedBlockCounter(0);
     createQRCodeArray(text).then((qrCodeArray) => {
       const qrCodeElement = createQRCodeElement(qrCodeArray);
       container.appendChild(qrCodeElement);
       setOnClickBoxes(qrCodeElement);
+      updateStat(0);
     });
   };
   createButton.addEventListener("click", createQRCodeFromInputValue);
