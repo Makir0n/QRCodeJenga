@@ -33,7 +33,9 @@ npm run build
 ```bash
 git fetch origin
 git checkout main
+git pull origin main
 npm run build
+git add .
 git commit -m 'build'
 git branch -D published
 git checkout --track origin/published
