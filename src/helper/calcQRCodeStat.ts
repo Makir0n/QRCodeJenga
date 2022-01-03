@@ -9,22 +9,24 @@ const isQRCodeColorCell = (
 export const calcQRCodeStat = (qrCodeGrid: QRCodeGrid | null) => {
   if (!qrCodeGrid) {
     return {
-      deletedColorCellCount: 0,
-      deletedColorCellPercent: 0,
+      reversedBlackCellCount: 0,
+      reversedBlackCellPercent: 0,
+      initialBlackCellCount: 0,
     };
   }
   const qrCodeColorCells = qrCodeGrid.flat().filter(isQRCodeColorCell);
   const initialBlackCells = qrCodeColorCells.filter(
     (cell) => cell.initialColor === "black"
   );
-  const deletedBlackCells = initialBlackCells.filter(
+  const reversedBlackCells = initialBlackCells.filter(
     (cell) => cell.color === "white"
   );
   return {
-    deletedColorCellCount: deletedBlackCells.length,
-    deletedColorCellPercent:
+    reversedBlackCellCount: reversedBlackCells.length,
+    reversedBlackCellPercent:
       Math.floor(
-        (deletedBlackCells.length / initialBlackCells.length) * 10000
+        (reversedBlackCells.length / initialBlackCells.length) * 10000
       ) / 100,
+    initialBlackCellCount: initialBlackCells.length,
   };
 };
