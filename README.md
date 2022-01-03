@@ -7,9 +7,10 @@
 ## Install
 
 ```bash
+# Use node.js that is specified by .nvmrc (or install node.js manually)
+nvm use
+# Install dependency
 npm ci
-# or
-npm install
 ```
 
 ## Build

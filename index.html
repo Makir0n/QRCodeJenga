@@ -217,72 +217,22 @@
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-TTJ533Z7X3"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-TTJ533Z7X3"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-      gtag("config", "G-TTJ533Z7X3");
-    </script>
+    gtag("config", "G-TTJ533Z7X3");
+  </script>
   </head>
 
   <body>
-    <div class="wrapper">
-      <div class="container">
-        <div id="container"></div>
-        <div class="deleted-block">
-          消した黒マス: <span id="deleted-block-count">0</span>個<br />
-          <span id="deleted-block-percent"></span>
-        </div>
-      </div>
-      <div class="container right">
-        <h1>QRコードジェンガ</h1>
-        <p class="desc">
-          1人〜7人程度までで遊べるパーティーゲーム。<br />
-          みんなで順番にQRコードを1マスずつ白く塗りつぶして読み取れなくなった人の負け！
-        </p>
-        <h2>遊び方</h2>
-        <p class="usage">
-          ① はじめにスマホのQRコードリーダー（例：Google
-          レンズ）を準備します。QRコードリーダーでQRコードが読み取れることを確認しましょう。<br />
-          ②
-          QRコードの黒いマスをタップ(クリック)すると白く塗りつぶすことができます。プレイヤーは1マスずつ白く塗りつぶします。<br />
-          ③
-          1マス塗りつぶすごとにQRコードリーダーで読み取れるかを確認します。読み取れれば次のプレイヤーに交代します。<br />
-          ④
-          これをQRコードが読み取れなくなるまで繰り返します。最初に読み取れなくした人の負けです。<br /><br />
-          (やり直したい人のために白マスをタップしても黒マスに反転します)
-        </p>
-        <div class="create-container">
-          <input id="create-input" type="text" value="SUCCESS!" />
-          <button id="create-button">QRコードを作成</button>
-        </div>
-        <div class="tweet-container">
-          ＼Twitterでシェア！／<br/>
-          <a
-            href="http://twitter.com/share?url=https%3A%2F%2Fmakir0n.github.io%2FQRCodeJenga%2F&text=QR%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%AC&hashtags=QR%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%AC"
-            target="_blank"
-            class="tweet-button"
-            >ツイート</a
-          >
-        </div>
-        <div class="credit">
-          <a href="terms.html">利用規約</a><br />
-          ゲーム考案、企画、デザイン:
-          <a href="https://twitter.com/Makir0n" target="_blank">@Makir0n</a>
-          開発:
-          <a href="https://twitter.com/asakura_dev" target="_blank"
-            >@asakura_dev</a
-          ><br />
-          QRコードは(株)デンソーウェーブの登録商標です
-        </div>
-      </div>
-    </div>
-    <script src="dist/main.js"></script>
+    <div id="app"></div>
+    <script src="dist/app.bundle.js"></script>
   </body>
 </html>
