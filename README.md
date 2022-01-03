@@ -40,5 +40,5 @@ git commit -m 'build'
 git branch -D published
 git checkout --track origin/published
 git merge main
-git push main published
+git push origin main published
 ```
