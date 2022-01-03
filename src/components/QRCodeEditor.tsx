@@ -189,17 +189,17 @@ export const QRCodeEditor = ({
           </Flex>
           <Box>
             <Button
-              size="xs"
-              mb="10px"
+              size="sm"
+              mb="20px"
               disabled={!availableUndo}
               onClick={undo}
             >
               <AiFillCaretLeft />
             </Button>
             <Button
-              size="xs"
-              mb="10px"
-              ml="10px"
+              size="sm"
+              mb="20px"
+              ml="15px"
               disabled={!availableRedo}
               onClick={redo}
             >
