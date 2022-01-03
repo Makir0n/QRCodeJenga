@@ -58,9 +58,9 @@ const App = () => {
           </a>
         </div>
         <div className="credit">
-          <a href="terms.html">利用規約</a>
+          <a href="privacy.html">プライバシーポリシー</a>
           <br />
-          ゲーム考案、企画、デザイン:
+          企画、デザイン:
           <a href="https://twitter.com/Makir0n" target="_blank">
             @Makir0n
           </a>{" "}
