@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { QRCodeColorGrid, QRCodeGrid } from "@/types";
 import { createQRCodeGrid } from "@/helper/createQRCodeGrid";
 import { calcQRCodeStat } from "@/helper/calcQRCodeStat";
+import { Box, Flex } from "@chakra-ui/react";
 
 const BOX_SIZE = 15;
 const ROW_LABEL_WIDTH = 20;
@@ -44,48 +45,78 @@ export const QRCodeEditor = ({
 
   return (
     qrCodeGrid && (
-      <React.Fragment>
-        <div className="rows" style={{ width, height }}>
+      <Flex
+        flexDirection={"column"}
+        justify={"center"}
+        align={"center"}
+        minH={"100%"}
+      >
+        <Flex direction={"column"} width={width} height={height}>
           {qrCodeGrid.map((row, y) => {
             return (
-              <div className="row" style={{ width }} key={y}>
+              <Flex direction={"row"} width={width} key={y}>
                 {row.map((qrCodeCell, x) => {
                   switch (qrCodeCell.type) {
                     case "corner":
-                      return <div className="corner" key={x}></div>;
+                      return (
+                        <Box
+                          w={`${ROW_LABEL_WIDTH}px`}
+                          h={`${COLUMN_LABEL_HEIGHT}px`}
+                          key={x}
+                        />
+                      );
                     case "columnLabel":
                       return (
-                        <div className="column-label" key={x}>
+                        <Box
+                          w={`${BOX_SIZE}px`}
+                          h={`${COLUMN_LABEL_HEIGHT}px`}
+                          key={x}
+                          lineHeight="7px"
+                          py="7px"
+                          fontSize="7px"
+                          textAlign="center"
+                          verticalAlign="middle"
+                          color="gray.600"
+                        >
                           {qrCodeCell.text}
-                        </div>
+                        </Box>
                       );
                     case "rowLabel":
                       return (
-                        <div className="row-label" key={x}>
+                        <Box
+                          w={`${ROW_LABEL_WIDTH}px`}
+                          h={`${BOX_SIZE}px`}
+                          key={x}
+                          lineHeight={`${BOX_SIZE}px`}
+                          fontSize="7px"
+                          textAlign="center"
+                          verticalAlign="middle"
+                          color="gray.600"
+                        >
                           {qrCodeCell.text}
-                        </div>
+                        </Box>
                       );
                     case "color":
                       return (
-                        <div
-                          className="box"
-                          data-initial-color={qrCodeCell.initialColor}
-                          data-color={qrCodeCell.color}
+                        <Box
+                          w={`${BOX_SIZE}px`}
+                          h={`${BOX_SIZE}px`}
                           onClick={() => handleClickColorCell(x, y)}
                           key={x}
-                        ></div>
+                          bg={qrCodeCell.color}
+                        />
                       );
                   }
                 })}
-              </div>
+              </Flex>
             );
           })}
-        </div>
-        <div className="deleted-block">
+        </Flex>
+        <Box textAlign="center">
           消した黒マス: {deletedColorCellCount}個<br />
           破壊率: {deletedColorCellPercent}%
-        </div>
-      </React.Fragment>
+        </Box>
+      </Flex>
     )
   );
 };

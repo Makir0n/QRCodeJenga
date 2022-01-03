@@ -1,78 +1,68 @@
 import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
+import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 import { QRCodeEditor } from "./components/QrCodeEditor";
 import { createQRCodeColorGrid } from "./helper/createQRCodeColorGrid";
 import { QRCodeColorGrid } from "./types";
+import { ShareButton } from "./components/ShareButton";
+import { Credit } from "./components/Credit";
+import { QRCodeCreateForm } from "./components/QRCodeCreateForm";
+import { Description } from "./components/Description";
+
+const DEFAULT_QR_CODE_TEXT = "SUCCESS!";
 
 const App = () => {
   const [qrCodeColorGrid, setQRCodeColorGrid] =
     useState<QRCodeColorGrid | null>(null);
-  useEffect(() => {
-    createQRCodeColorGrid("SUCCESS!").then((qrCodeColorGrid) => {
+  const updateQRCodeGrid = (text: string) => {
+    createQRCodeColorGrid(text).then((qrCodeColorGrid) => {
       setQRCodeColorGrid(qrCodeColorGrid);
     });
+  };
+  // on mount
+  useEffect(() => {
+    updateQRCodeGrid(DEFAULT_QR_CODE_TEXT);
   }, []);
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <QRCodeEditor qrCodeColorGrid={qrCodeColorGrid} />
-      </div>
-      <div className="container right">
-        <h1>QRコードジェンガ</h1>
-        <p className="desc">
-          1人〜7人程度までで遊べるパーティーゲーム。
-          <br />
-          みんなで順番にQRコードを1マスずつ白く塗りつぶして読み取れなくなった人の負け！
-        </p>
-        <h2>遊び方</h2>
-        <p className="usage">
-          ① はじめにスマホのQRコードリーダー（例：Google
-          レンズ）を準備します。QRコードリーダーでQRコードが読み取れることを確認しましょう。
-          <br />
-          ②
-          QRコードの黒いマスをタップ(クリック)すると白く塗りつぶすことができます。プレイヤーは1マスずつ白く塗りつぶします。
-          <br />
-          ③
-          1マス塗りつぶすごとにQRコードリーダーで読み取れるかを確認します。読み取れれば次のプレイヤーに交代します。
-          <br />
-          ④
-          これをQRコードが読み取れなくなるまで繰り返します。最初に読み取れなくした人の負けです。
-          <br />
-          <br />
-          (やり直したい人のために白マスをタップしても黒マスに反転します)
-        </p>
-        <div className="create-container">
-          <input id="create-input" type="text" defaultValue="SUCCESS!" />{" "}
-          <button id="create-button">QRコードを作成</button>
-        </div>
-        <div className="tweet-container">
-          ＼Twitterでシェア！／
-          <br />
-          <a
-            href="http://twitter.com/share?url=https%3A%2F%2Fmakir0n.github.io%2FQRCodeJenga%2F&text=QR%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%AC&hashtags=QR%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%AC"
-            target="_blank"
-            className="tweet-button"
-          >
-            ツイート
-          </a>
-        </div>
-        <div className="credit">
-          <a href="privacy.html">プライバシーポリシー</a>
-          <br />
-          企画、デザイン:
-          <a href="https://twitter.com/Makir0n" target="_blank">
-            @Makir0n
-          </a>{" "}
-          開発:
-          <a href="https://twitter.com/asakura_dev" target="_blank">
-            @asakura_dev
-          </a>
-          <br />
-          QRコードは(株)デンソーウェーブの登録商標です
-        </div>
-      </div>
-    </div>
+    <ChakraProvider>
+      <Flex
+        minH={"100vh"}
+        direction={["column-reverse", "column-reverse", "row"]}
+      >
+        <Box w={"100%"} p={"20px"}>
+          <QRCodeEditor qrCodeColorGrid={qrCodeColorGrid} />
+        </Box>
+        <Box
+          w={"100%"}
+          p={"20px"}
+          bg={
+            "linear-gradient(to top, #5e492c 10%,#57392f 20%,#481b18 40%,#1e0606 80%,#1a0806 100%)"
+          }
+          bgSize={"cover"}
+        >
+          <Flex flexDirection={"column"} justify={"center"} minH={"100%"}>
+            <Box mt="20px">
+              <Description />
+            </Box>
+            <Box mt="40px">
+              <QRCodeCreateForm
+                defaultText={DEFAULT_QR_CODE_TEXT}
+                onSubmit={(text) => {
+                  updateQRCodeGrid(text);
+                }}
+              />
+            </Box>
+            <Box mt="40px">
+              <ShareButton />
+            </Box>
+            <Box mt="20px">
+              <Credit />
+            </Box>
+          </Flex>
+        </Box>
+      </Flex>
+    </ChakraProvider>
   );
 };
 ReactDom.render(<App />, document.getElementById("app"));
