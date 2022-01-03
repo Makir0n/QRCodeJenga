@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
 import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
-import { QRCodeEditor } from "./components/QrCodeEditor";
+import type { QRCodeColorGrid } from "./types";
 import { createQRCodeColorGrid } from "./helper/createQRCodeColorGrid";
-import { QRCodeColorGrid } from "./types";
+import { QRCodeEditor } from "./components/QrCodeEditor";
+import { Description } from "./components/Description";
+import { QRCodeCreateForm } from "./components/QRCodeCreateForm";
 import { ShareButton } from "./components/ShareButton";
 import { Credit } from "./components/Credit";
-import { QRCodeCreateForm } from "./components/QRCodeCreateForm";
-import { Description } from "./components/Description";
 
 const DEFAULT_QR_CODE_TEXT = "SUCCESS!";
 

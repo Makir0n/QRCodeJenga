@@ -13,9 +13,9 @@ import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import type { QRCodeColorGrid, QRCodeGrid } from "@/types";
 import { createQRCodeGrid } from "@/helper/createQRCodeGrid";
 import { calcQRCodeStat } from "@/helper/calcQRCodeStat";
-import { Setting, SettingDrawer } from "./SettingDrawer";
-import { useQRCodeHistory } from "@/hooks/useQRCodeHistory";
 import { oppositeColor } from "@/helper/color";
+import { useQRCodeHistory } from "@/hooks/useQRCodeHistory";
+import { Setting, SettingDrawer } from "./SettingDrawer";
 
 const BOX_SIZE = 15;
 const ROW_LABEL_WIDTH = 20;

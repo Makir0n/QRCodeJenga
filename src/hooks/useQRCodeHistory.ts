@@ -1,6 +1,6 @@
-import { oppositeColor } from "@/helper/color";
-import { COLOR, QRCodeColorCell, QRCodeGrid } from "@/types";
 import { useEffect, useState } from "react";
+import { COLOR, QRCodeColorCell, QRCodeGrid } from "@/types";
+import { oppositeColor } from "@/helper/color";
 
 /**
  * コマンド: QRCodeに対する操作の実行単位

@@ -1,4 +1,4 @@
-import { QRCodeCell, QRCodeColorCell, QRCodeGrid } from "@/types";
+import type { QRCodeCell, QRCodeColorCell, QRCodeGrid } from "@/types";
 
 const isQRCodeColorCell = (
   qrCodeCell: QRCodeCell
